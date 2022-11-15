@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etablissement">
+      <h2 data-cy="etablissementDetailsHeading"><span>Etablissement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ etablissement.id }}</span>
+        </dd>
+        <dt><span>Matricule Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.matriculeEtab }}</span>
+        </dd>
+        <dt><span>Nom Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.nomEtab }}</span>
+        </dd>
+        <dt><span>Type Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.typeEtab }}</span>
+        </dd>
+        <dt><span>Statut</span></dt>
+        <dd>
+          <span>{{ etablissement.statut }}</span>
+        </dd>
+        <dt><span>Email Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.emailEtab }}</span>
+        </dd>
+        <dt><span>Region</span></dt>
+        <dd>
+          <span>{{ etablissement.region }}</span>
+        </dd>
+        <dt><span>Departement</span></dt>
+        <dd>
+          <span>{{ etablissement.departement }}</span>
+        </dd>
+        <dt><span>Commune</span></dt>
+        <dd>
+          <span>{{ etablissement.commune }}</span>
+        </dd>
+        <dt><span>Type Insp</span></dt>
+        <dd>
+          <span>{{ etablissement.typeInsp }}</span>
+        </dd>
+        <dt><span>Demande Matricule Etab</span></dt>
+        <dd>
+          <div *ngIf="etablissement.demandeMatriculeEtab">
+            <a [routerLink]="['/demande-matricule-etab', etablissement.demandeMatriculeEtab?.id, 'view']">{{
+              etablissement.demandeMatriculeEtab?.numeroDemandeEtab
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etablissement', etablissement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

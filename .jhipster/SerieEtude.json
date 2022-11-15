@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20221109140638",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "serie_etude",
+  "fields": [
+    {
+      "fieldName": "serie",
+      "fieldType": "Serie",
+      "fieldValues": "STEG,STIDD_E,STIDD_M,S3,S4,S5,F6"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SerieEtude",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "serieEtude",
+      "relationshipName": "apprenant",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

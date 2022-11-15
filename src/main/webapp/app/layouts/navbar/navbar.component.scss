@@ -5,21 +5,25 @@
 Navbar
 ========================================================================== */
 
-.navbar-version {
-  font-size: 0.65em;
-  color: $navbar-dark-color;
-}
-
-.profile-image {
-  height: 1.75em;
-  width: 1.75em;
+.mylogo {
+  height: 50px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/mylogo.png') no-repeat center center;
+  background-size: contain;
 }
 
 .navbar {
   padding: 0.2rem 1rem;
+  width: 100%;
+  height: auto;
+
+  // background-color: rgb(0, 102, 255);
 
   a.nav-link {
-    font-weight: 400;
+    font-weight: 500;
+    color: white;
   }
 }
 
@@ -34,3 +38,33 @@ Logo styles
   background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
   background-size: contain;
 }
+
+// .navbar-version {
+//   font-size: 0.65em;
+//   color: $navbar-dark-color;
+// }
+
+// .profile-image {
+//   height: 1.75em;
+//   width: 1.75em;
+// }
+
+// .navbar {
+//   padding: 0.2rem 1rem;
+
+//   a.nav-link {
+//     font-weight: 400;
+//   }
+// }
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+// .logo-img {
+//   height: 45px;
+//   width: 45px;
+//   display: inline-block;
+//   vertical-align: middle;
+//   background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+//   background-size: contain;
+// }

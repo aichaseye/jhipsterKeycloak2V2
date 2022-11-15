@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matiere">
+      <h2 data-cy="matiereDetailsHeading"><span>Matiere</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ matiere.id }}</span>
+        </dd>
+        <dt><span>Nom Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.nomMatiere }}</span>
+        </dd>
+        <dt><span>Reference</span></dt>
+        <dd>
+          <span>{{ matiere.reference }}</span>
+        </dd>
+        <dt><span>Type Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.typeMatiere }}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+          <div *ngIf="matiere.image">
+            <a (click)="openFile(matiere.image, matiere.imageContentType)">open</a>
+            {{ matiere.imageContentType }}, {{ byteSize(matiere.image) }}
+          </div>
+        </dd>
+        <dt><span>Matricule Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.matriculeMatiere }}</span>
+        </dd>
+        <dt><span>Etablissement</span></dt>
+        <dd>
+          <div *ngIf="matiere.etablissement">
+            <a [routerLink]="['/etablissement', matiere.etablissement?.id, 'view']">{{ matiere.etablissement?.nomEtab }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/matiere', matiere.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

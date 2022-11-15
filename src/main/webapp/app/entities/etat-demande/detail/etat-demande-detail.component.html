@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etatDemande">
+      <h2 data-cy="etatDemandeDetailsHeading"><span>Etat Demande</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ etatDemande.id }}</span>
+        </dd>
+        <dt><span>Etat</span></dt>
+        <dd>
+          <span>{{ etatDemande.etat }}</span>
+        </dd>
+        <dt><span>Date Disponibilite</span></dt>
+        <dd>
+          <span>{{ etatDemande.dateDisponibilite | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ etatDemande.description }}</span>
+        </dd>
+        <dt><span>Demande Matricule App</span></dt>
+        <dd>
+          <div *ngIf="etatDemande.demandeMatriculeApp">
+            <a [routerLink]="['/demande-matricule-app', etatDemande.demandeMatriculeApp?.id, 'view']">{{
+              etatDemande.demandeMatriculeApp?.numeroDemandeApp
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Demande Matricule Etab</span></dt>
+        <dd>
+          <div *ngIf="etatDemande.demandeMatriculeEtab">
+            <a [routerLink]="['/demande-matricule-etab', etatDemande.demandeMatriculeEtab?.id, 'view']">{{
+              etatDemande.demandeMatriculeEtab?.numeroDemandeEtab
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etat-demande', etatDemande.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

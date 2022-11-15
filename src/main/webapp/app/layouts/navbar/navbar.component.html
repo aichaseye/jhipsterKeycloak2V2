@@ -1,9 +1,8 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
-      <span class="logo-img"></span>
-      <span class="navbar-title">JhipsterbaseKeycloak2</span>
-      <span class="navbar-version">{{ version }}</span>
+      <span class="mylogo"></span>
+      <span class="navbar-title">GESMAT</span>
     </a>
     <a
       class="navbar-toggler d-lg-none"
@@ -23,27 +22,186 @@
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
             <span>
               <fa-icon icon="home"></fa-icon>
-              <span>Home</span>
+              <span> Accueil</span>
             </span>
           </a>
         </li>
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <li
-          *ngSwitchCase="true"
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_APPRENANT', 'ROLE_DIRECTEUR', 'ROLE_PROVISEUR', 'ROLE_CHEF_TRAVAUX']"
           ngbDropdown
           class="nav-item dropdown pointer"
           display="dynamic"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+          <a class="nav-link dropdown- toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
             <span>
-              <fa-icon icon="th-list"></fa-icon>
-              <span>Entities</span>
+              <!-- <fa-icon icon="th-list"></fa-icon> -->
+              <span>Demande Matricule </span>
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="demande-matricule-app/new"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Apprenant </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="demande-matricule-etab/new"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Etablissement </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTEUR', 'ROLE_PROVISEUR', 'ROLE_CHEF_TRAVAUX', 'ROLE_APPRENANT']"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown- toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <span>
+              <!-- <fa-icon icon="th-list"></fa-icon> -->
+              <span>Etat Demande</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="etat-demande"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Vérification</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_BFPA', 'ROLE_DIRECTEUR', 'ROLE_PROVISEUR', 'ROLE_CHEF_TRAVAUX']"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown- toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <span>
+              <!-- <fa-icon icon="th-list"></fa-icon> -->
+              <span>NIU</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="apprenant"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Apprenant</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="etablissement"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Etablissement</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="matiere"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Matiere</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTEUR', 'ROLE_PROVISEUR', 'ROLE_CHEF_TRAVAUX', 'ROLE_BFPA']"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown- toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <span>
+              <!-- <fa-icon icon="th-list"></fa-icon> -->
+              <span>Gestion Demande </span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="demande-matricule-app"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Apprenant </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="demande-matricule-etab"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Etablissement </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="etat-demande"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <!-- <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon> -->
+                <span>Validation </span>
+              </a>
+            </li>
           </ul>
         </li>
         <li
@@ -104,7 +262,7 @@
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
             <span *ngIf="!account?.imageUrl">
               <fa-icon icon="user"></fa-icon>
-              <span>Account</span>
+              <span>Compte</span>
             </span>
             <span *ngIf="account?.imageUrl">
               <img [src]="account!.imageUrl" class="profile-image rounded-circle" alt="Avatar" />
@@ -114,13 +272,13 @@
             <li *ngSwitchCase="true">
               <a class="dropdown-item" (click)="logout()" id="logout" data-cy="logout">
                 <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
-                <span>Sign out</span>
+                <span>Deconnecter</span>
               </a>
             </li>
             <li *ngSwitchCase="false">
               <a class="dropdown-item" (click)="login()" id="login" data-cy="login">
                 <fa-icon icon="sign-in-alt" [fixedWidth]="true"></fa-icon>
-                <span>Sign in</span>
+                <span>Se connecter</span>
               </a>
             </li>
           </ul>

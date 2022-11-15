@@ -1,0 +1,129 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-demande-matricule-etab-heading" data-cy="DemandeMatriculeEtabCreateUpdateHeading">Saisir une Demande Matricule</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_numeroDemandeEtab">Numero Demande Etab</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numeroDemandeEtab"
+            id="field_numeroDemandeEtab"
+            data-cy="numeroDemandeEtab"
+            formControlName="numeroDemandeEtab"
+          />
+          <div
+            *ngIf="
+              editForm.get('numeroDemandeEtab')!.invalid &&
+              (editForm.get('numeroDemandeEtab')!.dirty || editForm.get('numeroDemandeEtab')!.touched)
+            "
+          ></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomEtab">Nom Etablissement</label>
+          <input type="text" class="form-control" name="nomEtab" id="field_nomEtab" data-cy="nomEtab" formControlName="nomEtab" />
+          <div *ngIf="editForm.get('nomEtab')!.invalid && (editForm.get('nomEtab')!.dirty || editForm.get('nomEtab')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomEtab')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_typeEtab">Type Etablissement</label>
+          <select class="form-control" name="typeEtab" formControlName="typeEtab" id="field_typeEtab" data-cy="typeEtab">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let typeEtab of typeEtabValues" [value]="typeEtab">{{ typeEtab }}</option>
+          </select>
+          <div *ngIf="editForm.get('typeEtab')!.invalid && (editForm.get('typeEtab')!.dirty || editForm.get('typeEtab')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('typeEtab')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_statut">Statut Etablissement</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let statutEtab of statutEtabValues" [value]="statutEtab">{{ statutEtab }}</option>
+          </select>
+          <div *ngIf="editForm.get('statut')!.invalid && (editForm.get('statut')!.dirty || editForm.get('statut')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('statut')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_emailEtab">Email Etablissement</label>
+          <input type="text" class="form-control" name="emailEtab" id="field_emailEtab" data-cy="emailEtab" formControlName="emailEtab" />
+          <div *ngIf="editForm.get('emailEtab')!.invalid && (editForm.get('emailEtab')!.dirty || editForm.get('emailEtab')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('emailEtab')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_region">Region</label>
+          <select class="form-control" name="region" formControlName="region" id="field_region" data-cy="region">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let nomReg of nomRegValues" [value]="nomReg">{{ nomReg }}</option>
+          </select>
+          <div *ngIf="editForm.get('region')!.invalid && (editForm.get('region')!.dirty || editForm.get('region')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('region')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departement">Departement</label>
+          <select class="form-control" name="departement" formControlName="departement" id="field_departement" data-cy="departement">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let nomDep of nomDepValues" [value]="nomDep">{{ nomDep }}</option>
+          </select>
+          <div *ngIf="editForm.get('departement')!.invalid && (editForm.get('departement')!.dirty || editForm.get('departement')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('departement')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_commune">Commune</label>
+          <input type="text" class="form-control" name="commune" id="field_commune" data-cy="commune" formControlName="commune" />
+          <div *ngIf="editForm.get('commune')!.invalid && (editForm.get('commune')!.dirty || editForm.get('commune')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('commune')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_typeInsp">Type Inspection</label>
+          <select class="form-control" name="typeInsp" formControlName="typeInsp" id="field_typeInsp" data-cy="typeInsp">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let typeInspection of typeInspectionValues" [value]="typeInspection">{{ typeInspection }}</option>
+          </select>
+          <div *ngIf="editForm.get('typeInsp')!.invalid && (editForm.get('typeInsp')!.dirty || editForm.get('typeInsp')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('typeInsp')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

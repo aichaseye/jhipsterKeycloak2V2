@@ -1,0 +1,11 @@
+id;etat;date_disponibilite;description;demande_matricule_app_id
+1;Disponible;2022-11-08;../fake-data/blob/hipster.txt;1
+2;Indisponible;2022-11-09;../fake-data/blob/hipster.txt;2
+3;Indisponible;2022-11-09;../fake-data/blob/hipster.txt;3
+4;Disponible;2022-11-08;../fake-data/blob/hipster.txt;4
+5;EnCours;2022-11-09;../fake-data/blob/hipster.txt;5
+6;EnCours;2022-11-09;../fake-data/blob/hipster.txt;6
+7;EnCours;2022-11-09;../fake-data/blob/hipster.txt;7
+8;Indisponible;2022-11-08;../fake-data/blob/hipster.txt;8
+9;Indisponible;2022-11-08;../fake-data/blob/hipster.txt;9
+10;Disponible;2022-11-09;../fake-data/blob/hipster.txt;10

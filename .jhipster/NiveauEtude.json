@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20221109140640",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "niveau_etude",
+  "fields": [
+    {
+      "fieldName": "niveau",
+      "fieldType": "Niveau",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CAP1,CAP2,CAP3,BTS1,BTS2,BT1,BT2,BT3,CPS,BEP1,BEP2,BEP3,CQP,ChefEquipe,ChefChantier,TechnicienSpecialise,METP,BTI,TitreProfessionnel"
+    },
+    {
+      "fieldName": "anneeEtude",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "NiveauEtude",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "niveauEtude",
+      "relationshipName": "apprenant",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

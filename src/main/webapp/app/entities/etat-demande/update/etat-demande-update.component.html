@@ -1,0 +1,129 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-etat-demande-heading" data-cy="EtatDemandeCreateUpdateHeading">Etat de la Demande</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_etat">Disponibilité</label>
+          <select class="form-control" name="etat" formControlName="etat" id="field_etat" data-cy="etat">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let etat of etatValues" [value]="etat">{{ etat }}</option>
+          </select>
+          <div *ngIf="editForm.get('etat')!.invalid && (editForm.get('etat')!.dirty || editForm.get('etat')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('etat')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateDisponibilite">Date Disponibilite</label>
+          <div class="input-group">
+            <input
+              id="field_dateDisponibilite"
+              data-cy="dateDisponibilite"
+              type="text"
+              class="form-control"
+              name="dateDisponibilite"
+              ngbDatepicker
+              #dateDisponibiliteDp="ngbDatepicker"
+              formControlName="dateDisponibilite"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDisponibiliteDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_description">Description</label>
+          <textarea
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_demandeMatriculeApp">Numéro Demande de l'Apprenant</label>
+          <select
+            class="form-control"
+            id="field_demandeMatriculeApp"
+            data-cy="demandeMatriculeApp"
+            name="demandeMatriculeApp"
+            formControlName="demandeMatriculeApp"
+          >
+            <option *ngIf="editForm.get(['demandeMatriculeApp'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                demandeMatriculeAppOption.id === editForm.get('demandeMatriculeApp')!.value?.id
+                  ? editForm.get('demandeMatriculeApp')!.value
+                  : demandeMatriculeAppOption
+              "
+              *ngFor="let demandeMatriculeAppOption of demandeMatriculeAppsCollection; trackBy: trackDemandeMatriculeAppById"
+            >
+              {{ demandeMatriculeAppOption.numeroDemandeApp }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['demandeMatriculeApp'])!.invalid &&
+            (editForm.get(['demandeMatriculeApp'])!.dirty || editForm.get(['demandeMatriculeApp'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['demandeMatriculeApp'])?.errors?.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_demandeMatriculeEtab">Numéro Demande de l'établissemant</label>
+          <select
+            class="form-control"
+            id="field_demandeMatriculeEtab"
+            data-cy="demandeMatriculeEtab"
+            name="demandeMatriculeEtab"
+            formControlName="demandeMatriculeEtab"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                demandeMatriculeEtabOption.id === editForm.get('demandeMatriculeEtab')!.value?.id
+                  ? editForm.get('demandeMatriculeEtab')!.value
+                  : demandeMatriculeEtabOption
+              "
+              *ngFor="let demandeMatriculeEtabOption of demandeMatriculeEtabsCollection; trackBy: trackDemandeMatriculeEtabById"
+            >
+              {{ demandeMatriculeEtabOption.numeroDemandeEtab }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20221109140643",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etat_demande",
+  "fields": [
+    {
+      "fieldName": "etat",
+      "fieldType": "Etat",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Disponible,Indisponible,EnCours"
+    },
+    {
+      "fieldName": "dateDisponibilite",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EtatDemande",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "numeroDemandeApp",
+      "otherEntityName": "demandeMatriculeApp",
+      "otherEntityRelationshipName": "etatDemande",
+      "ownerSide": true,
+      "relationshipName": "demandeMatriculeApp",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "numeroDemandeEtab",
+      "otherEntityName": "demandeMatriculeEtab",
+      "otherEntityRelationshipName": "etatDemande",
+      "ownerSide": true,
+      "relationshipName": "demandeMatriculeEtab",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

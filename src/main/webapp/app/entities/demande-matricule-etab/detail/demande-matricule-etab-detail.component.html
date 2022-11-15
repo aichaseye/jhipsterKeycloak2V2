@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeMatriculeEtab">
+      <h2 data-cy="demandeMatriculeEtabDetailsHeading"><span>Demande Matricule Etab</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.id }}</span>
+        </dd>
+        <dt><span>Numero Demande Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.numeroDemandeEtab }}</span>
+        </dd>
+        <dt><span>Nom Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.nomEtab }}</span>
+        </dd>
+        <dt><span>Type Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.typeEtab }}</span>
+        </dd>
+        <dt><span>Statut</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.statut }}</span>
+        </dd>
+        <dt><span>Email Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.emailEtab }}</span>
+        </dd>
+        <dt><span>Region</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.region }}</span>
+        </dd>
+        <dt><span>Departement</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.departement }}</span>
+        </dd>
+        <dt><span>Commune</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.commune }}</span>
+        </dd>
+        <dt><span>Type Insp</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeEtab.typeInsp }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-matricule-etab', demandeMatriculeEtab.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+{
+  "applications": "*",
+  "changelogDate": "20221109140639",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "apprenant",
+  "fields": [
+    {
+      "fieldName": "matriculeApp",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numIdNational",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Masclin,Feminin"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"],
+      "options": {
+        "email": true
+      }
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lieuNaissance",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Apprenant",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "apprenant",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "numeroDemandeApp",
+      "otherEntityName": "demandeMatriculeApp",
+      "otherEntityRelationshipName": "apprenant",
+      "ownerSide": true,
+      "relationshipName": "demandeMatriculeApp",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "niveau",
+      "otherEntityName": "niveauEtude",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "niveauEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "serie",
+      "otherEntityName": "serieEtude",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "serieEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "filiere",
+      "otherEntityName": "filiereEtude",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "filiereEtude",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

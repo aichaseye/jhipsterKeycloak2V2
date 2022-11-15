@@ -1,0 +1,190 @@
+
+enum NomReg {
+Dakar, Thies, Saint_Louis, Diourbel, Louga, Fatick, Kaffrine, 
+Kaolack, Matam, Tambacounda, Kedougou, Kolda, Ziguinchor, Sedhiou
+}
+
+
+enum NomDep{
+Dakar, Pikine, Rufisque, Guediawaye, Keur_Massar,
+Thies, Mbour, Tivaoune,
+Saint_Louis, Dagana, Podor,
+Diourbel, Mbacke, Bambey,
+Louga, Linguere, Kebemer,
+Fatick, Foundiougne, Gossas,
+Kaffrine, Birkelane, Koungheul, Malem_Hodar,
+Kaolack, Guinguineo, Nioro_du_Rip,
+Matam, Kanel, Ranerou,
+Tambacounda, Bakel, Goudiry, Koumpentoum,
+Kedougou, Salemata, Saraya,
+Kolda, Velingara, Medina_Yoro_Foulah,
+Sedhiou, Bounkiling, Goudomp,
+Ziguinchor, Bignona, Oussouye
+}
+
+
+// an ignored comment
+/** not an ignored comment */
+
+enum TypeInspection {
+	IA, IEF  
+}
+entity Etablissement {
+	  matriculeEtab String unique,
+	  nomEtab String required ,
+	  typeEtab TypeEtab required,
+	  statut StatutEtab required,
+	  emailEtab String unique ,
+      region NomReg  required,
+      departement NomDep required,
+      commune String required,
+      typeInsp TypeInspection required
+	  
+}
+
+enum TypeEtab {
+	LyceeTechnique, CFP  
+}
+enum StatutEtab {
+	Prive, Public , Mixte 
+}
+entity FiliereEtude{
+	filiere Filiere ,
+}
+entity SerieEtude {
+	serie Serie,
+}
+enum Serie {
+	STEG, STIDD_E, STIDD_M, S3, S4, S5 , F6
+}
+enum Filiere {
+	Agricultre, Peche, Elevage, Mine_Cariere,
+    Artisanat, Batiment_TraveauxPublics,
+    Mecanique, MenuiserieBois, Habillement,
+    Agroalimentaire, Electronique,
+    Electrotechnique, Energetique, Hydrolique,
+    Structure_Metallique, Structure_Plastique,
+    Beaute_Esthetique, Developpement_Territorial,
+    Droit, Economie_et_gestionLogistique,
+    Industrie_cultirelle_et_creative ,
+    Informatique_et_numerique, Restauration_Htellerie,
+    Sante, Biologie_chimie, Sport, Tourisme, Environnement
+}
+
+entity Apprenant {
+	matriculeApp String unique,
+	nom String  required,
+    prenom String  required,
+    numIdNational Long required  unique,
+    sexe Sexe required,
+  	@email
+	email String required  unique ,
+	dateNaissance LocalDate required,
+    lieuNaissance String required,
+    adresse String required
+     
+}
+
+enum Sexe {
+	Masclin, Feminin  
+}
+
+
+enum Nationalite {
+	Senegalais, Autre  
+}
+entity NiveauEtude {
+    niveau Niveau required,
+    anneeEtude LocalDate
+}
+
+enum Niveau {
+	CAP1, CAP2, CAP3, BTS1, BTS2, BT1, BT2, BT3 , CPS, BEP1, BEP2, BEP3, CQP,
+    ChefEquipe, ChefChantier, TechnicienSpecialise,
+    METP, BTI, TitreProfessionnel
+}
+entity DemandeMatriculeApp {
+	numeroDemandeApp String unique,
+	nom String  required,
+    prenom String  required,
+    numIdNational Long required  unique,
+    sexe Sexe required,
+	email String required  unique ,
+	dateNaissance LocalDate required,
+    lieuNaissance String required,
+    adresse String required,
+    etabFrequente String required,
+    matriculeEtab String required 
+    
+}
+entity DemandeMatriculeEtab {
+	  numeroDemandeEtab String unique,
+	  nomEtab String required unique ,
+	  typeEtab TypeEtab required,
+	  statut StatutEtab required,
+	  emailEtab String  required unique ,
+      region NomReg  required,
+      departement NomDep required,
+      commune String required,
+      typeInsp TypeInspection required
+	  
+}
+entity EtatDemande{
+	etat Etat required,
+    dateDisponibilite LocalDate , 
+    description TextBlob 
+    
+}
+enum Etat{
+	Disponible, Indisponible, EnCours
+}
+entity Matiere {
+	nomMatiere String required,
+	reference String required unique,
+	typeMatiere String ,
+    image AnyBlob,
+    matriculeMatiere String unique
+}
+entity PersonnelEtab{
+	nom String required,
+    prenom String required,
+    fonction Fonction required
+	
+}
+enum  Fonction {
+	Proviseur, Directeur, BFPA, ChefTravaux	
+}
+
+relationship OneToMany {
+    Etablissement to Apprenant{Etablissement(nomEtab)}
+    Etablissement to PersonnelEtab {Etablissement(nomEtab)}
+    NiveauEtude to Apprenant{NiveauEtude(niveau) }
+    SerieEtude to Apprenant{SerieEtude(serie) }
+    FiliereEtude to Apprenant{FiliereEtude(Filiere) }
+    Etablissement to Matiere {Etablissement(nomEtab)}
+    
+}
+
+relationship OneToOne {
+    Apprenant{User(login)  } to User
+    PersonnelEtab{User(login)} to User
+    EtatDemande {DemandeMatriculeApp(numeroDemandeApp) required} to DemandeMatriculeApp
+    EtatDemande {DemandeMatriculeEtab(numeroDemandeEtab) } to DemandeMatriculeEtab 
+    Apprenant {DemandeMatriculeApp(numeroDemandeApp) }to DemandeMatriculeApp
+    Etablissement {DemandeMatriculeEtab(numeroDemandeEtab)} to DemandeMatriculeEtab
+}
+
+// Set pagination options
+
+paginate * with pagination
+//paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+

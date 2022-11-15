@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeMatriculeApp">
+      <h2 data-cy="demandeMatriculeAppDetailsHeading"><span>Demande Matricule App</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.id }}</span>
+        </dd>
+        <dt><span>Numero Demande App</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.numeroDemandeApp }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.prenom }}</span>
+        </dd>
+        <dt><span>Num Id National</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.numIdNational }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.sexe }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.email }}</span>
+        </dd>
+        <dt><span>Date Naissance</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.dateNaissance | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Lieu Naissance</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.lieuNaissance }}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.adresse }}</span>
+        </dd>
+        <dt><span>Etab Frequente</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.etabFrequente }}</span>
+        </dd>
+        <dt><span>Matricule Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatriculeApp.matriculeEtab }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-matricule-app', demandeMatriculeApp.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
