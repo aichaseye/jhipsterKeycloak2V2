@@ -34,7 +34,7 @@ public class DemandeMatriculeAppServiceImpl implements DemandeMatriculeAppServic
         String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         String date = String.valueOf(System.currentTimeMillis());
 
-        String matricule = year.substring(year.length() - 2).concat(date.substring(date.length() - 3));
+        String matricule = year.substring(year.length() - 2).concat(date.substring(date.length() - 4));
 
         demandeMatriculeApp.setNumeroDemandeApp(matricule);
 
